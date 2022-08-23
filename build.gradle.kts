@@ -42,7 +42,7 @@ tasks {
 
 bukkit {
     load = BukkitPluginDescription.PluginLoadOrder.STARTUP
-    main = " com.eintosti.schematicplotgenerator.SchematicPlotGenerator"
+    main = "com.eintosti.schematicplotgenerator.SchematicPlotGenerator"
     apiVersion = "1.19"
     authors = listOf("einTosti")
 }

@@ -2,9 +2,9 @@ package com.eintosti.schematicplotgenerator.schematic;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
+import net.minecraft.world.phys.Vec3;
 import org.bukkit.Bukkit;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.util.BlockVector;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
@@ -17,14 +17,12 @@ import java.util.Map;
  */
 public class Schematic {
 
-    private final Map<BlockVector, BlockData> blockWrapper = new HashMap<>();
+    private final Map<Vec3, BlockData> blockWrapper = new HashMap<>();
 
     private int height;
     private int longestSide;
 
     public Schematic(File file) {
-        Map<Integer, BlockData> blocksMap = new HashMap<>();
-
         try {
             CompoundTag nbtData = NbtIo.readCompressed(file);
 
@@ -36,6 +34,7 @@ public class Schematic {
             byte[] dataByteArray = nbtData.getByteArray("BlockData");
             CompoundTag palette = nbtData.getCompound("Palette");
 
+            Map<Integer, BlockData> blocksMap = new HashMap<>();
             palette.getAllKeys().forEach(rawState -> {
                 int id = palette.getInt(rawState);
                 BlockData data = Bukkit.createBlockData(rawState);
@@ -71,7 +70,7 @@ public class Schematic {
                     continue;
                 }
 
-                this.blockWrapper.put(new BlockVector(x, y, z), blockData);
+                this.blockWrapper.put(new Vec3(x, y, z), blockData);
 
                 index++;
             }
@@ -90,6 +89,6 @@ public class Schematic {
 
     @Nullable
     public BlockData getBlockData(int x, int y, int z) {
-        return blockWrapper.get(new BlockVector(x, y, z));
+        return blockWrapper.get(new Vec3(x, y, z));
     }
 }
