@@ -1,0 +1,36 @@
+name: Build main
+
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 17 ]
+      fail-fast: true
+
+    steps:
+      - name: Checkout Git Repository
+        uses: actions/checkout@v3.0.2
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: JDK ${{ matrix.java }}
+        uses: actions/setup-java@v3.4.1
+        with:
+          java-version: ${{ matrix.java }}
+          cache: 'gradle'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew clean build
+
+      - name: Archive jars
+        uses: actions/upload-artifact@v3
+        with:
+          name: SchematicPlotGenerator
+          path: /build/libs/SchematicPlotGenerator-*.jar
