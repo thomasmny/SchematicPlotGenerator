@@ -1,4 +1,4 @@
-# SchematicPlotGenerator ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/Trichtern/SchematicPlotGenerator/Build%20main/master) [![Discord](https://img.shields.io/discord/419460301403193344.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.com/rduPF3yk62)
+# SchematicPlotGenerator ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/Trichtern/SchematicPlotGenerator/build.yml?branch=master) [![Discord](https://img.shields.io/discord/419460301403193344.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.com/rduPF3yk62)
 
 ## Usage
 
