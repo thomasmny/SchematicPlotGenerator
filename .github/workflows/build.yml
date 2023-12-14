@@ -30,7 +30,7 @@ jobs:
         run: ./gradlew clean build
 
       - name: Archive jars
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: SchematicPlotGenerator
           path: /build/libs/SchematicPlotGenerator-*.jar
