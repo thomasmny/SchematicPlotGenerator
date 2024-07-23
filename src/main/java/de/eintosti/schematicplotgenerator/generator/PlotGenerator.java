@@ -1,6 +1,6 @@
-package com.eintosti.schematicplotgenerator.generator;
+package de.eintosti.schematicplotgenerator.generator;
 
-import com.eintosti.schematicplotgenerator.schematic.Schematic;
+import de.eintosti.schematicplotgenerator.schematic.Schematic;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.block.data.BlockData;
@@ -17,20 +17,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @author einTosti
- */
 public class PlotGenerator extends ChunkGenerator {
 
-    public static final int PLOT_HEIGHT = 64;
-    public static final int SPACE_BETWEEN_PLOTS = 30;
-
     private final Schematic schematic;
+    private final int plotHeight;
     private final int plotWidth;
 
-    public PlotGenerator(Schematic schematic) {
+    /**
+     * Creates a new {@link PlotGenerator} instance.
+     *
+     * @param schematic         The schematic to paste in the world
+     * @param plotHeight        The height at which the bottom of the schematic is placed
+     * @param spaceBetweenPlots The amount of blocks between the longest side of two plots
+     */
+    public PlotGenerator(Schematic schematic, int plotHeight, int spaceBetweenPlots) {
         this.schematic = schematic;
-        this.plotWidth = schematic.getLongestSide() + SPACE_BETWEEN_PLOTS;
+        this.plotHeight = plotHeight;
+        this.plotWidth = schematic.getLongestSide() + spaceBetweenPlots;
     }
 
     @NotNull
@@ -55,12 +58,12 @@ public class PlotGenerator extends ChunkGenerator {
 
         for (int x = 0; x < 16; x++) {
             for (int z = 0; z < 16; z++) {
-                for (int y = 0; y < (PLOT_HEIGHT + schematic.getHeight()); y++) {
+                for (int y = 0; y < schematic.getHeight(); y++) {
                     int pasteX = (x + baseX) % plotWidth;
                     int pasteZ = (z + baseZ) % plotWidth;
                     BlockData blockData = schematic.getBlockData(pasteX, y, pasteZ);
                     if (blockData != null) {
-                        chunkData.setBlock(x, y + PLOT_HEIGHT, z, blockData);
+                        chunkData.setBlock(x, y + plotHeight, z, blockData);
                     }
                 }
             }
