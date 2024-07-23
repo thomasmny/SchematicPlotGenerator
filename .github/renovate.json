@@ -3,6 +3,7 @@
     "config:base",
     ":disableDependencyDashboard"
   ],
+  "automerge": true,
   "labels": [
     "renovate"
   ],
