@@ -30,7 +30,7 @@ public final class SchematicPlotGenerator extends JavaPlugin {
         File schematicFile = getSchematicFile();
         if (schematicFile == null) {
             throw new RuntimeException("Unable to find schematic for chunk generation. "
-                    + "Please place a .schem file in the /schematics/ folder");
+                    + "Please place a .schem file in the /schematic/ folder");
         }
 
         return new PlotGenerator(Schematic.of(schematicFile), PLOT_HEIGHT, SPACE_BETWEEN_PLOTS);

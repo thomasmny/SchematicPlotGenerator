@@ -2,7 +2,7 @@
 
 ## Usage
 
-1. Place the schematic you wish to use in `plugins/SchematicPlotGenerator/schematics/`
+1. Place the schematic you wish to use in `plugins/SchematicPlotGenerator/schematic/`
 2. Create a new world with `SchematicPlotGenerator` as your chunk generator
 
 ## Example
